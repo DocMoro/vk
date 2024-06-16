@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { Star, StarOutline } from '../../shared/assets/icons'
 import { IMovieWithFavoriteState } from '../../shared/constants/type'
 import { path } from '../../shared/constants/var'
-import { getRenderData } from '../../shared/utils/pureFunc'
+import { checkDataValidity } from '../../shared/utils/pureFunc'
 import s from './MovieCard.module.scss'
 
 type MovieCardProps = {
@@ -15,10 +15,10 @@ type MovieCardProps = {
 export const MovieCard: FC<MovieCardProps> = ({ movie }) => {
   const { poster, name, year, rating, id, isFavorite } = movie
 
-  const renderPoster = getRenderData(poster?.previewUrl)
-  const renderName = getRenderData(name)
-  const renderYear = getRenderData(year)
-  const renderRating = getRenderData(rating.kp)
+  const renderPoster = checkDataValidity(poster?.previewUrl)
+  const renderName = checkDataValidity(name)
+  const renderYear = checkDataValidity(year)
+  const renderRating = checkDataValidity(rating.kp)
 
   return (
     <li className={s.card}>

@@ -2,7 +2,19 @@ export enum path {
   favorites = 'favorites',
   movie = 'movie'
 }
-
+export enum apiPath {
+  base = 'https://api.kinopoisk.dev/v1.4/',
+  movie = 'movie'
+}
+export const TOKEN_API = '671H74R-HEJ4T40-Q4QZDPC-XSMJ9HZ'
+export const LIMIT = 50
+export const PAGINATION_STEP = 5
+export const baseInfo = {
+  total: 0,
+  page: 1,
+  pages: 0,
+  limit: LIMIT
+}
 export const moviesTestData = {
   docs: [
     {

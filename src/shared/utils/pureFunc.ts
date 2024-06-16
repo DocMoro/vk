@@ -1,9 +1,10 @@
-export const getRenderData = (data: string | number | null | undefined) => {
-  if (typeof data === 'string') {
-    return data
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const checkDataValidity = (data: any) => {
+  if (data === null) {
+    return ''
   }
-  if (typeof data === 'number') {
-    return data.toString()
+  if (data === undefined) {
+    return ''
   }
-  return ''
+  return data
 }

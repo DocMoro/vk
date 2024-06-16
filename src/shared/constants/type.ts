@@ -181,8 +181,25 @@ interface IMovie {
   createdAt?: string | null
 }
 
+type TResError = {
+  statusCode: number
+  message: string
+  error: string
+}
+
+interface IResInfo {
+  total: number
+  limit: number
+  page: number
+  pages: number
+}
+
+interface IResMovies extends IResInfo {
+  docs: IMovie[]
+}
+
 interface IMovieWithFavoriteState extends IMovie {
   isFavorite: boolean
 }
 
-export type { IMovie, IMovieWithFavoriteState }
+export type { IMovie, IMovieWithFavoriteState, IResInfo, IResMovies, TResError }
