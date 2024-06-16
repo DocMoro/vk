@@ -9,6 +9,7 @@ export enum apiPath {
 export const TOKEN_API = '671H74R-HEJ4T40-Q4QZDPC-XSMJ9HZ'
 export const LIMIT = 50
 export const PAGINATION_STEP = 5
+export const KEY_FAVORITES = 'favorites'
 export const baseInfo = {
   total: 0,
   page: 1,

@@ -1,11 +1,12 @@
 import clsx from 'clsx'
-import { FC } from 'react'
+import { FC, useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Star, StarOutline } from '../../shared/assets/icons'
 import { IMovieWithFavoriteState } from '../../shared/constants/type'
 import { path } from '../../shared/constants/var'
 import { checkDataValidity } from '../../shared/utils/pureFunc'
+import { FavoritesContext } from '../../store/favoritesSlice'
 import s from './MovieCard.module.scss'
 
 type MovieCardProps = {
@@ -13,7 +14,20 @@ type MovieCardProps = {
 }
 
 export const MovieCard: FC<MovieCardProps> = ({ movie }) => {
-  const { poster, name, year, rating, id, isFavorite } = movie
+  const { poster, name, year, rating, id } = movie
+  const favorites = useContext(FavoritesContext)
+  const [isFavorite, setIsFavorite] = useState(movie.isFavorite)
+
+  const handleButtonClick = () => {
+    const strId = id.toString()
+    if (isFavorite) {
+      favorites.deleteFavoriteId(strId)
+      setIsFavorite(false)
+    } else {
+      favorites.addFavoriteId(strId)
+      setIsFavorite(true)
+    }
+  }
 
   const renderPoster = checkDataValidity(poster?.previewUrl)
   const renderName = checkDataValidity(name)
@@ -30,7 +44,7 @@ export const MovieCard: FC<MovieCardProps> = ({ movie }) => {
       <p className={s.card__text}>{renderRating}</p>
       <button
         className={clsx(s.card__button, s.button)}
-        onClick={() => {}}
+        onClick={handleButtonClick}
         title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
         type={'button'}
       >

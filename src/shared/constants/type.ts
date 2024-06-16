@@ -187,6 +187,10 @@ type TResError = {
   error: string
 }
 
+type TFavoritesIDs = {
+  [id: string]: boolean
+}
+
 interface IResInfo {
   total: number
   limit: number
@@ -202,4 +206,4 @@ interface IMovieWithFavoriteState extends IMovie {
   isFavorite: boolean
 }
 
-export type { IMovie, IMovieWithFavoriteState, IResInfo, IResMovies, TResError }
+export type { IMovie, IMovieWithFavoriteState, IResInfo, IResMovies, TFavoritesIDs, TResError }

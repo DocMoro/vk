@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from 'react'
+import { FC, useCallback, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { MoviesList } from '../../components/MoviesList'
@@ -7,10 +7,12 @@ import { useQuery } from '../../hooks/use-query'
 import { IMovieWithFavoriteState, IResInfo } from '../../shared/constants/type'
 import { baseInfo, LIMIT, PAGINATION_STEP } from '../../shared/constants/var'
 import ResourcesService from '../../shared/service/ResoursesService/ResoursesService'
+import { FavoritesContext } from '../../store/favoritesSlice'
 
 const MainPage: FC = () => {
   const query = useQuery()
   const navigate = useNavigate()
+  const favorites = useContext(FavoritesContext)
   const [movies, setMovies] = useState<IMovieWithFavoriteState[]>([])
   const [paginationInfo, setPaginationInfo] = useState<IResInfo>(baseInfo)
 
@@ -40,7 +42,7 @@ const MainPage: FC = () => {
     const moviesDataWithIsFavorite = docs.map(movie => {
       return {
         ...movie,
-        isFavorite: false
+        isFavorite: favorites.checkIsFavorite(movie.id.toString())
       }
     })
     setMovies(moviesDataWithIsFavorite)
