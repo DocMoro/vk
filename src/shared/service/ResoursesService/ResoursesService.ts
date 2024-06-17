@@ -24,4 +24,23 @@ export default class ResourcesService extends ServicePrototype {
 
     return result
   }
+
+  static async getMoviesByIDs(IDs: string) {
+    const result: Result<IResMovies> = {
+      hasError: false,
+      errorMessage: '',
+      data: null
+    }
+
+    try {
+      const response = await api.get<IResMovies>(`${apiPath.movie}?id=${IDs}`)
+      const resMovies = response.data
+      result.data = resMovies
+    } catch (error) {
+      const err = error as AxiosError<TResError>
+      this._handlerError(result, err)
+    }
+
+    return result
+  }
 }

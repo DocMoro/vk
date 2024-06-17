@@ -18,12 +18,13 @@ const MainPage: FC = () => {
 
   const setAnotherPage = useCallback(
     (nextPage: number) => {
-      navigate(`/?page=${nextPage}&limit=${LIMIT}`)
+      navigate(`/movies/?page=${nextPage}&limit=${LIMIT}`)
     },
     [navigate]
   )
 
   const setDataMovies = useCallback(async () => {
+    if (query.toString() === '') return
     const { data, errorMessage, hasError } = await ResourcesService.getMoviesPage(query.toString())
     if (hasError) {
       console.log(errorMessage)

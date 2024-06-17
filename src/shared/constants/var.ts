@@ -1,6 +1,7 @@
 export enum path {
-  favorites = 'favorites',
-  movie = 'movie'
+  favorites = '/favorites',
+  movie = '/movie',
+  movies = '/movies/'
 }
 export enum apiPath {
   base = 'https://api.kinopoisk.dev/v1.4/',
