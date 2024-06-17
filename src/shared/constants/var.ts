@@ -17,6 +17,7 @@ export const baseInfo = {
   pages: 0,
   limit: LIMIT
 }
+export const GENRES = ['комедия', 'мелодрама', 'ужасы', 'драма']
 export const moviesTestData = {
   docs: [
     {

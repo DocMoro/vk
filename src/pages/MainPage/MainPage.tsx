@@ -1,8 +1,10 @@
 import { FC, useCallback, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import FormOfFiltration from '../../components/FormOfFiltration/FormOfFiltration'
 import { MoviesList } from '../../components/MoviesList'
 import { Pagination } from '../../components/Pagination'
+import { useResourceFiltering } from '../../hooks/use-filtering'
 import { useQuery } from '../../hooks/use-query'
 import { IMovieWithFavoriteState, IResInfo } from '../../shared/constants/type'
 import { baseInfo, LIMIT, PAGINATION_STEP } from '../../shared/constants/var'
@@ -15,17 +17,23 @@ const MainPage: FC = () => {
   const favorites = useContext(FavoritesContext)
   const [movies, setMovies] = useState<IMovieWithFavoriteState[]>([])
   const [paginationInfo, setPaginationInfo] = useState<IResInfo>(baseInfo)
+  const { urlQuery, filters, handleGenderClick } = useResourceFiltering({
+    genres: query.getAll('genre.name')
+  })
 
   const setAnotherPage = useCallback(
     (nextPage: number) => {
-      navigate(`/movies/?page=${nextPage}&limit=${LIMIT}`)
+      navigate(`/movies/?page=${nextPage}&limit=${LIMIT}${urlQuery}`)
     },
-    [navigate]
+    [navigate, urlQuery]
   )
 
   const setDataMovies = useCallback(async () => {
-    if (query.toString() === '') return
-    const { data, errorMessage, hasError } = await ResourcesService.getMoviesPage(query.toString())
+    const queryPage = query.get('page')
+    if (!queryPage) return
+    const { data, errorMessage, hasError } = await ResourcesService.getMoviesPage(
+      `?page=${queryPage}&limit=${LIMIT}${urlQuery}`
+    )
     if (hasError) {
       console.log(errorMessage)
       return
@@ -47,7 +55,7 @@ const MainPage: FC = () => {
       }
     })
     setMovies(moviesDataWithIsFavorite)
-  }, [query])
+  }, [query, urlQuery])
 
   useEffect(() => {
     setDataMovies()
@@ -59,6 +67,7 @@ const MainPage: FC = () => {
 
   return (
     <>
+      <FormOfFiltration genres={filters.genres} cbClick={handleGenderClick} />
       <MoviesList movies={movies} />
       <Pagination
         pageSize={paginationInfo.limit}
