@@ -3,6 +3,7 @@ import './App.css'
 import { observer } from 'mobx-react-lite'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+import Header from './components/Header/Header'
 import FavoritesPage from './pages/FavoritesPage.ts/FavoritesPage'
 import MainPage from './pages/MainPage/MainPage'
 import { path } from './shared/constants/var'
@@ -13,15 +14,30 @@ const ConnectFavoritesPage = observer(FavoritesPage)
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <ConnectedMainPage />
+    element: (
+      <>
+        <Header />
+        <ConnectedMainPage />
+      </>
+    )
   },
   {
     path: path.movies,
-    element: <ConnectedMainPage />
+    element: (
+      <>
+        <Header />
+        <ConnectedMainPage />
+      </>
+    )
   },
   {
     path: path.favorites,
-    element: <ConnectFavoritesPage />
+    element: (
+      <>
+        <Header />
+        <ConnectFavoritesPage />
+      </>
+    )
   }
 ])
 
