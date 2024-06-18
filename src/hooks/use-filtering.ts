@@ -1,6 +1,8 @@
 import { FormEvent, useCallback } from 'react'
 import type { NavigateOptions } from 'react-router-dom'
 
+import { KEY_QUERY } from '../shared/constants/var'
+
 export type TFilters = {
   genres: string[]
 }
@@ -12,9 +14,9 @@ export const useResourceFiltering = (
   const handleGenderClick = useCallback(
     (name: string, checked: boolean) => {
       if (checked) {
-        query.append('genres.name', name)
+        query.append(KEY_QUERY.GENRES, name)
       } else {
-        query.delete('genres.name', name)
+        query.delete(KEY_QUERY.GENRES, name)
       }
     },
     [query]

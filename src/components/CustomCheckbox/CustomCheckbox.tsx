@@ -7,10 +7,11 @@ type CustomCheckboxProps = {
   cbClick: (name: string, checkbox: boolean) => void
   searchParams: URLSearchParams
   name: string
+  keyQuery: string
 }
 
-const CustomCheckbox: FC<CustomCheckboxProps> = ({ name, searchParams, cbClick }) => {
-  const [state, setState] = useState(searchParams.has('genres.name', name))
+const CustomCheckbox: FC<CustomCheckboxProps> = ({ name, searchParams, keyQuery, cbClick }) => {
+  const [state, setState] = useState(searchParams.has(keyQuery, name))
 
   const handleClick = () => {
     setState(!state)

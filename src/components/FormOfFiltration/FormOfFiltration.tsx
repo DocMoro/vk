@@ -1,6 +1,6 @@
 import { FC, FormEvent } from 'react'
 
-import { GENRES } from '../../shared/constants/var'
+import { GENRES, KEY_QUERY } from '../../shared/constants/var'
 import CustomCheckbox from '../CustomCheckbox/CustomCheckbox'
 
 type FormOfFiltrationProps = {
@@ -15,7 +15,12 @@ const FormOfFiltration: FC<FormOfFiltrationProps> = ({ searchParams, cbChangeGen
       <ul>
         {GENRES.map(genre => (
           <li key={genre}>
-            <CustomCheckbox name={genre} searchParams={searchParams} cbClick={cbChangeGenres} />
+            <CustomCheckbox
+              name={genre}
+              searchParams={searchParams}
+              keyQuery={KEY_QUERY.GENRES}
+              cbClick={cbChangeGenres}
+            />
           </li>
         ))}
       </ul>

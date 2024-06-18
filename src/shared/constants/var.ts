@@ -10,7 +10,7 @@ export enum apiPath {
 export const TOKEN_API = '0CSKXBW-1W1M09Z-GAPJRHQ-ZXHJD88'
 export const LIMIT = 50
 export const PAGINATION_STEP = 5
-export const KEY_FAVORITES = 'favorites'
+export const KEY_LOCALDB_FAVORITES = 'favorites'
 export const baseInfo = {
   total: 0,
   page: 1,
@@ -21,6 +21,9 @@ export const START_PARAMS = `page=1&limit=${LIMIT}`
 export const notNullFields =
   '&notNullFields=name&notNullFields=id&notNullFields=year&notNullFields=rating.kp&notNullFields=poster.url'
 export const GENRES = ['комедия', 'мелодрама', 'ужасы', 'драма']
+export enum KEY_QUERY {
+  GENRES = 'genres.name'
+}
 export const moviesTestData = {
   docs: [
     {

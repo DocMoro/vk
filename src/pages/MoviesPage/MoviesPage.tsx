@@ -27,8 +27,6 @@ const MoviesPage: FC = () => {
   )
 
   const setDataMovies = useCallback(async () => {
-    const queryPage = searchParams.get('page')
-    if (!queryPage) return
     const { data, errorMessage, hasError } = await ResourcesService.getMoviesPage(
       `?${searchParams.toString()}${notNullFields}`
     )

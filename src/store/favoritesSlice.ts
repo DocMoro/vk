@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx'
 import { createContext } from 'react'
 
 import { TFavoritesIDs } from '../shared/constants/type'
-import { KEY_FAVORITES } from '../shared/constants/var'
+import { KEY_LOCALDB_FAVORITES } from '../shared/constants/var'
 
 class FavoritesSlice {
   favoritesIDs: TFavoritesIDs = {}
@@ -10,7 +10,7 @@ class FavoritesSlice {
   constructor() {
     makeAutoObservable(this)
 
-    const data = localStorage.getItem(KEY_FAVORITES)
+    const data = localStorage.getItem(KEY_LOCALDB_FAVORITES)
     if (data) {
       this.favoritesIDs = JSON.parse(data)
     }
@@ -27,7 +27,7 @@ class FavoritesSlice {
   }
 
   _localDatabaseUpdate() {
-    localStorage.setItem(KEY_FAVORITES, JSON.stringify(this.favoritesIDs))
+    localStorage.setItem(KEY_LOCALDB_FAVORITES, JSON.stringify(this.favoritesIDs))
   }
 
   checkIsFavorite(id: string) {
