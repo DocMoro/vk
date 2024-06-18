@@ -27,7 +27,7 @@ const FormOfFiltration: FC<FormOfFiltrationProps> = ({ searchParams, cbChangeGen
           </li>
         ))}
       </ul>
-      <RangeInput name="ratings" query={searchParams} keyQuery={KEY_QUERY.RATING} min={0} max={10} step={0.1} />
+      <RangeInput name="ratings" query={searchParams} keyQuery={KEY_QUERY.RATING} min={1} max={10} step={0.1} />
       <RangeInput name="years" query={searchParams} keyQuery={KEY_QUERY.YEAR} min={1990} max={currYear} step={1} />
       <button type="submit">Поиск</button>
     </form>

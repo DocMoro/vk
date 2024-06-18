@@ -1,13 +1,9 @@
 .Section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 2rem 2rem 4rem;
 }
 
 .ImageContainer {
   position: relative;
-  width: 100%;
   padding-top: 100%;
 }
 
@@ -27,6 +23,7 @@
   font-weight: 700;
   font-size: 3.5rem;
   line-height: 1.2em;
+  text-align: center;
 
   margin-top: 2rem;
   margin-bottom: 1.5rem;
@@ -65,7 +62,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
 
   margin-top: 2rem;
 }
