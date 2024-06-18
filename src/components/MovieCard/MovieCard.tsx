@@ -36,7 +36,7 @@ export const MovieCard: FC<MovieCardProps> = ({ movie }) => {
 
   return (
     <li className={s.card}>
-      <Link className={s.card__link} to={`${path.movie}${id}`}>
+      <Link className={s.card__link} to={`${path.movie}/${id}`}>
         <img alt={renderName} className={s.card__image} src={renderPoster} />
       </Link>
       <h3 className={s.card__title}>{renderName}</h3>

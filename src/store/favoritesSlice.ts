@@ -18,6 +18,7 @@ class FavoritesSlice {
 
   deleteFavoriteId(id: string) {
     delete this.favoritesIDs[id]
+    this.favoritesIDs = { ...this.favoritesIDs }
     this._localDatabaseUpdate()
   }
 

@@ -1,0 +1,90 @@
+.Section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 2rem 4rem;
+}
+
+.ImageContainer {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+}
+
+.Image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+
+  object-position: center bottom;
+  object-fit: cover;
+}
+
+.Title {
+  font-weight: 700;
+  font-size: 3.5rem;
+  line-height: 1.2em;
+
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.SubTitle {
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.2em;
+
+  color: var(--color-grey);
+}
+
+.Text {
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1.2em;
+}
+
+.List {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  margin-top: 2rem;
+}
+
+.Cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.YearContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+
+  margin-top: 2rem;
+}
+
+.GenresContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.GenreText:first-letter {
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 720px) {
+  .List {
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -32,7 +32,7 @@ const FavoritesPage: FC = () => {
   useEffect(() => {
     const newArr = movies.filter(movie => favorites.checkIsFavorite(movie.id.toString()))
     setMovies(newArr)
-  }, [favorites])
+  }, [favorites.favoritesIDs])
 
   useEffect(() => {
     setDataMovies()

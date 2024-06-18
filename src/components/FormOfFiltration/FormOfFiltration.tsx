@@ -10,6 +10,8 @@ type FormOfFiltrationProps = {
   searchParams: URLSearchParams
 }
 
+const currYear = new Date().getFullYear()
+
 const FormOfFiltration: FC<FormOfFiltrationProps> = ({ searchParams, cbChangeGenres, cbSubmit }) => {
   return (
     <form onSubmit={cbSubmit}>
@@ -25,7 +27,8 @@ const FormOfFiltration: FC<FormOfFiltrationProps> = ({ searchParams, cbChangeGen
           </li>
         ))}
       </ul>
-      <RangeInput name="range" query={searchParams} keyQuery={KEY_QUERY.RATING} min={0} max={10} step={0.1} />
+      <RangeInput name="ratings" query={searchParams} keyQuery={KEY_QUERY.RATING} min={0} max={10} step={0.1} />
+      <RangeInput name="years" query={searchParams} keyQuery={KEY_QUERY.YEAR} min={1990} max={currYear} step={1} />
       <button type="submit">Поиск</button>
     </form>
   )
