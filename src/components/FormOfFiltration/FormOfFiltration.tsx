@@ -2,6 +2,7 @@ import { FC, FormEvent } from 'react'
 
 import { GENRES, KEY_QUERY } from '../../shared/constants/var'
 import CustomCheckbox from '../CustomCheckbox/CustomCheckbox'
+import RangeInput from '../RangeInput/DoubleScrollBar'
 
 type FormOfFiltrationProps = {
   cbChangeGenres: (name: string, checkbox: boolean) => void
@@ -24,6 +25,7 @@ const FormOfFiltration: FC<FormOfFiltrationProps> = ({ searchParams, cbChangeGen
           </li>
         ))}
       </ul>
+      <RangeInput name="range" query={searchParams} keyQuery={KEY_QUERY.RATING} min={0} max={10} step={0.1} />
       <button type="submit">Поиск</button>
     </form>
   )

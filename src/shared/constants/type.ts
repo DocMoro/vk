@@ -211,4 +211,18 @@ interface IMovieWithFavoriteState extends IMovie {
   isFavorite: boolean
 }
 
-export type { IMovie, IMovieWithFavoriteState, IResInfo, IResMovies, TCustomCheckbox, TFavoritesIDs, TResError }
+type TInitRangeValue = {
+  start: number
+  end: number
+}
+
+export type {
+  IMovie,
+  IMovieWithFavoriteState,
+  IResInfo,
+  IResMovies,
+  TCustomCheckbox,
+  TFavoritesIDs,
+  TInitRangeValue,
+  TResError
+}
