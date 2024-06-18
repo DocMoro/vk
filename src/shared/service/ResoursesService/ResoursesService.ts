@@ -14,8 +14,7 @@ export default class ResourcesService extends ServicePrototype {
     }
 
     try {
-      console.log(query)
-      const response = await api.get<IResMovies>(`${apiPath.movie}?${query}`)
+      const response = await api.get<IResMovies>(`${apiPath.movie}${query}`)
       const resMovies = response.data
       result.data = resMovies
     } catch (error) {

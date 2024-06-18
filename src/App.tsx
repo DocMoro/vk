@@ -1,7 +1,8 @@
 import './App.css'
 
 import { observer } from 'mobx-react-lite'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { useEffect } from 'react'
+import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-dom'
 
 import Header from './components/Header/Header'
 import FavoritesPage from './pages/FavoritesPage.ts/FavoritesPage'
@@ -11,24 +12,23 @@ import { path } from './shared/constants/var'
 const ConnectedMainPage = observer(MainPage)
 const ConnectFavoritesPage = observer(FavoritesPage)
 
+const NavigateEL = () => {
+  const navigate = useNavigate()
+  useEffect(() => {
+    navigate('/movies?page=1&limit=50')
+  }, [])
+  return <div></div>
+}
+
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <>
-        <Header />
-        <ConnectedMainPage />
-      </>
-    )
+    element: <NavigateEL />
   },
+
   {
-    path: path.movies,
-    element: (
-      <>
-        <Header />
-        <ConnectedMainPage />
-      </>
-    )
+    path: '/movies',
+    element: <ConnectedMainPage />
   },
   {
     path: path.favorites,

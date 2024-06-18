@@ -1,22 +1,26 @@
-import { FC } from 'react'
+import { FC, FormEvent } from 'react'
 
-import { TCustomCheckbox } from '../../shared/constants/type'
+import { GENRES } from '../../shared/constants/var'
 import CustomCheckbox from '../CustomCheckbox/CustomCheckbox'
 
 type FormOfFiltrationProps = {
-  genres: TCustomCheckbox[]
-  cbClick: (name: string, checkbox: boolean) => void
+  cbChangeGenres: (name: string, checkbox: boolean) => void
+  cbSubmit: (e: FormEvent) => void
+  searchParams: URLSearchParams
 }
 
-const FormOfFiltration: FC<FormOfFiltrationProps> = ({ genres, cbClick }) => {
+const FormOfFiltration: FC<FormOfFiltrationProps> = ({ searchParams, cbChangeGenres, cbSubmit }) => {
   return (
-    <ul>
-      {genres.map(genre => (
-        <li key={genre.name}>
-          <CustomCheckbox genre={genre} cbClick={cbClick} />
-        </li>
-      ))}
-    </ul>
+    <form onSubmit={cbSubmit}>
+      <ul>
+        {GENRES.map(genre => (
+          <li key={genre}>
+            <CustomCheckbox name={genre} searchParams={searchParams} cbClick={cbChangeGenres} />
+          </li>
+        ))}
+      </ul>
+      <button type="submit">Поиск</button>
+    </form>
   )
 }
 

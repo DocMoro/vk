@@ -7,7 +7,7 @@ export enum apiPath {
   base = 'https://api.kinopoisk.dev/v1.4/',
   movie = 'movie'
 }
-export const TOKEN_API = '671H74R-HEJ4T40-Q4QZDPC-XSMJ9HZ'
+export const TOKEN_API = '0CSKXBW-1W1M09Z-GAPJRHQ-ZXHJD88'
 export const LIMIT = 50
 export const PAGINATION_STEP = 5
 export const KEY_FAVORITES = 'favorites'
@@ -17,6 +17,8 @@ export const baseInfo = {
   pages: 0,
   limit: LIMIT
 }
+export const notNullFields =
+  '&notNullFields=name&notNullFields=id&notNullFields=year&notNullFields=rating.kp&notNullFields=poster.url'
 export const GENRES = ['комедия', 'мелодрама', 'ужасы', 'драма']
 export const moviesTestData = {
   docs: [

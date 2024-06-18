@@ -1,38 +1,36 @@
 import { FC, useCallback, useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 
 import FormOfFiltration from '../../components/FormOfFiltration/FormOfFiltration'
 import { MoviesList } from '../../components/MoviesList'
 import { Pagination } from '../../components/Pagination'
 import { useResourceFiltering } from '../../hooks/use-filtering'
-import { useQuery } from '../../hooks/use-query'
 import { IMovieWithFavoriteState, IResInfo } from '../../shared/constants/type'
-import { baseInfo, LIMIT, PAGINATION_STEP } from '../../shared/constants/var'
+import { baseInfo, notNullFields, PAGINATION_STEP } from '../../shared/constants/var'
 import ResourcesService from '../../shared/service/ResoursesService/ResoursesService'
 import { FavoritesContext } from '../../store/favoritesSlice'
 
 const MainPage: FC = () => {
-  const query = useQuery()
-  const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
   const favorites = useContext(FavoritesContext)
   const [movies, setMovies] = useState<IMovieWithFavoriteState[]>([])
   const [paginationInfo, setPaginationInfo] = useState<IResInfo>(baseInfo)
-  const { urlQuery, filters, handleGenderClick } = useResourceFiltering({
-    genres: query.getAll('genre.name')
-  })
+
+  const { handleGenderClick, handleSubmit } = useResourceFiltering(searchParams, setSearchParams)
 
   const setAnotherPage = useCallback(
     (nextPage: number) => {
-      navigate(`/movies/?page=${nextPage}&limit=${LIMIT}${urlQuery}`)
+      searchParams.set('page', nextPage.toString())
+      setSearchParams(searchParams, { replace: true })
     },
-    [navigate, urlQuery]
+    [searchParams, setSearchParams]
   )
 
   const setDataMovies = useCallback(async () => {
-    const queryPage = query.get('page')
+    const queryPage = searchParams.get('page')
     if (!queryPage) return
     const { data, errorMessage, hasError } = await ResourcesService.getMoviesPage(
-      `?page=${queryPage}&limit=${LIMIT}${urlQuery}`
+      `?${searchParams.toString()}${notNullFields}`
     )
     if (hasError) {
       console.log(errorMessage)
@@ -55,19 +53,15 @@ const MainPage: FC = () => {
       }
     })
     setMovies(moviesDataWithIsFavorite)
-  }, [query, urlQuery])
+  }, [searchParams])
 
   useEffect(() => {
     setDataMovies()
-  }, [setDataMovies])
-
-  useEffect(() => {
-    setAnotherPage(1)
-  }, [setAnotherPage])
+  }, [searchParams, setDataMovies])
 
   return (
     <>
-      <FormOfFiltration genres={filters.genres} cbClick={handleGenderClick} />
+      <FormOfFiltration searchParams={searchParams} cbChangeGenres={handleGenderClick} cbSubmit={handleSubmit} />
       <MoviesList movies={movies} />
       <Pagination
         pageSize={paginationInfo.limit}

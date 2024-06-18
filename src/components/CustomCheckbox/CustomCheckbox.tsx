@@ -1,17 +1,16 @@
 import clsx from 'clsx'
 import { FC, useEffect, useState } from 'react'
 
-import { TCustomCheckbox } from '../../shared/constants/type'
 import s from './CustomCheckbox.module.css'
 
 type CustomCheckboxProps = {
   cbClick: (name: string, checkbox: boolean) => void
-  genre: TCustomCheckbox
+  searchParams: URLSearchParams
+  name: string
 }
 
-const CustomCheckbox: FC<CustomCheckboxProps> = ({ genre, cbClick }) => {
-  const { name, checked } = genre
-  const [state, setState] = useState(checked)
+const CustomCheckbox: FC<CustomCheckboxProps> = ({ name, searchParams, cbClick }) => {
+  const [state, setState] = useState(searchParams.has('genres.name', name))
 
   const handleClick = () => {
     setState(!state)
