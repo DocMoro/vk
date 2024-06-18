@@ -6,16 +6,16 @@ import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-d
 
 import Header from './components/Header/Header'
 import FavoritesPage from './pages/FavoritesPage.ts/FavoritesPage'
-import MainPage from './pages/MainPage/MainPage'
-import { path } from './shared/constants/var'
+import MoviesPage from './pages/MoviesPage/MoviesPage'
+import { path, START_PARAMS } from './shared/constants/var'
 
-const ConnectedMainPage = observer(MainPage)
+const ConnectedMoviesPage = observer(MoviesPage)
 const ConnectFavoritesPage = observer(FavoritesPage)
 
-const NavigateEL = () => {
+const MainPage = () => {
   const navigate = useNavigate()
   useEffect(() => {
-    navigate('/movies?page=1&limit=50')
+    navigate(`${path.movies}?${START_PARAMS}`)
   }, [])
   return <div></div>
 }
@@ -23,12 +23,17 @@ const NavigateEL = () => {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <NavigateEL />
+    element: <MainPage />
   },
 
   {
-    path: '/movies',
-    element: <ConnectedMainPage />
+    path: path.movies,
+    element: (
+      <>
+        <Header />
+        <ConnectedMoviesPage />
+      </>
+    )
   },
   {
     path: path.favorites,

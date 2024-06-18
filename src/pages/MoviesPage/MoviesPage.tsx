@@ -10,7 +10,7 @@ import { baseInfo, notNullFields, PAGINATION_STEP } from '../../shared/constants
 import ResourcesService from '../../shared/service/ResoursesService/ResoursesService'
 import { FavoritesContext } from '../../store/favoritesSlice'
 
-const MainPage: FC = () => {
+const MoviesPage: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const favorites = useContext(FavoritesContext)
   const [movies, setMovies] = useState<IMovieWithFavoriteState[]>([])
@@ -23,7 +23,7 @@ const MainPage: FC = () => {
       searchParams.set('page', nextPage.toString())
       setSearchParams(searchParams, { replace: true })
     },
-    [searchParams, setSearchParams]
+    [searchParams]
   )
 
   const setDataMovies = useCallback(async () => {
@@ -57,7 +57,7 @@ const MainPage: FC = () => {
 
   useEffect(() => {
     setDataMovies()
-  }, [searchParams, setDataMovies])
+  }, [setDataMovies])
 
   return (
     <>
@@ -74,4 +74,4 @@ const MainPage: FC = () => {
   )
 }
 
-export default MainPage
+export default MoviesPage

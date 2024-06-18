@@ -1,7 +1,7 @@
 export enum path {
   favorites = '/favorites',
   movie = '/movie',
-  movies = '/movies/'
+  movies = '/movies'
 }
 export enum apiPath {
   base = 'https://api.kinopoisk.dev/v1.4/',
@@ -17,6 +17,7 @@ export const baseInfo = {
   pages: 0,
   limit: LIMIT
 }
+export const START_PARAMS = `page=1&limit=${LIMIT}`
 export const notNullFields =
   '&notNullFields=name&notNullFields=id&notNullFields=year&notNullFields=rating.kp&notNullFields=poster.url'
 export const GENRES = ['комедия', 'мелодрама', 'ужасы', 'драма']
