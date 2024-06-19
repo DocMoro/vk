@@ -56,7 +56,6 @@ const DoubleScrollBar: FC<DoubleScrollBarProps> = ({ min, max, name, className, 
           min={min}
           max={max}
           step={step}
-          defaultValue={min}
         />
         <input
           type="range"
@@ -65,7 +64,6 @@ const DoubleScrollBar: FC<DoubleScrollBarProps> = ({ min, max, name, className, 
           min={min}
           max={max}
           step={step}
-          defaultValue={max}
         />
       </div>
       <ul className={s.Range}>
