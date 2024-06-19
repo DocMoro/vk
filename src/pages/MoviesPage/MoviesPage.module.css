@@ -1,0 +1,8 @@
+.MoviesContainer {
+  display: flex;
+  align-items: start;
+  gap: 30px;
+
+  padding-top: 35px;
+  border-top: 1px solid #424242;
+}

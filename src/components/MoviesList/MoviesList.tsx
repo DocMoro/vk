@@ -12,12 +12,10 @@ type MoviesListProps = {
 
 export const MoviesList: FC<MoviesListProps> = ({ movies, className }) => {
   return (
-    <div className={clsx(s.character, className && className)}>
-      <ul className={s.character__list}>
-        {movies.map(movie => (
-          <MovieCard movie={movie} key={movie.id} />
-        ))}
-      </ul>
-    </div>
+    <ul className={clsx(s.character__list, className && className)}>
+      {movies.map(movie => (
+        <MovieCard movie={movie} key={movie.id} />
+      ))}
+    </ul>
   )
 }

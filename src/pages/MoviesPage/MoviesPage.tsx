@@ -9,6 +9,7 @@ import { IMovieWithFavoriteState, IResInfo } from '../../shared/constants/type'
 import { baseInfo, notNullFields, PAGINATION_STEP } from '../../shared/constants/var'
 import ResourcesService from '../../shared/service/ResoursesService/ResoursesService'
 import { FavoritesContext } from '../../store/favoritesSlice'
+import s from './MoviesPage.module.css'
 
 const MoviesPage: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -59,8 +60,15 @@ const MoviesPage: FC = () => {
 
   return (
     <>
-      <FormOfFiltration searchParams={searchParams} cbChangeGenres={handleGenderClick} cbSubmit={handleSubmit} />
-      <MoviesList movies={movies} />
+      <div className={s.MoviesContainer}>
+        <FormOfFiltration
+          className={s.FormPosition}
+          searchParams={searchParams}
+          cbChangeGenres={handleGenderClick}
+          cbSubmit={handleSubmit}
+        />
+        <MoviesList movies={movies} className={s.List} />
+      </div>
       <Pagination
         pageSize={paginationInfo.limit}
         currentPage={paginationInfo.page}

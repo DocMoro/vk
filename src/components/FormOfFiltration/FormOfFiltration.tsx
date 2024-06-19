@@ -10,7 +10,7 @@ type FormOfFiltrationProps = {
   cbChangeGenres: (name: string, checkbox: boolean) => void
   cbSubmit: (e: FormEvent) => void
   searchParams: URLSearchParams
-  className: string
+  className?: string
 }
 
 const currYear = new Date().getFullYear()

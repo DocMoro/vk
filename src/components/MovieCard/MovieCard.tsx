@@ -39,17 +39,23 @@ export const MovieCard: FC<MovieCardProps> = ({ movie }) => {
       <Link className={s.card__link} to={`${path.movie}/${id}`}>
         <img alt={renderName} className={s.card__image} src={renderPoster} />
       </Link>
-      <h3 className={s.card__title}>{renderName}</h3>
-      <p className={s.card__text}>{renderYear}</p>
-      <p className={s.card__text}>{renderRating}</p>
-      <button
-        className={clsx(s.card__button, s.button)}
-        onClick={handleButtonClick}
-        title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-        type={'button'}
-      >
-        {isFavorite ? <Star className={s.card__icon} /> : <StarOutline className={s.card__icon} />}
-      </button>
+      <div>
+        <h3 className={s.card__title}>{renderName}</h3>
+        <p className={s.card__text}>{renderYear}</p>
+        <p className={s.card__text}>{renderRating}</p>
+        <button
+          className={clsx(s.card__button, s.button)}
+          onClick={handleButtonClick}
+          title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+          type={'button'}
+        >
+          {isFavorite ? (
+            <Star fill={'#1a73e8'} className={s.card__icon} />
+          ) : (
+            <StarOutline fill={'#1a73e8'} className={s.card__icon} />
+          )}
+        </button>
+      </div>
     </li>
   )
 }

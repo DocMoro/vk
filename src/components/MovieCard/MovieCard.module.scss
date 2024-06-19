@@ -18,7 +18,7 @@
     left: 0;
 
     width: 100%;
-    height: calc(100% - 70px);
+    height: calc(100% - 4.4rem - 16px);
 
     background-color: white;
 
@@ -45,24 +45,21 @@
 
   &__title {
     font-weight: 500;
-    font-size: var(--font-size-m);
-    line-height: 16px;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    height: 2.4rem;
 
     margin: 0;
   }
 
   &__text {
     font-weight: 400;
-    font-size: var(--font-size-s);
-    line-height: 13px;
+    font-size: 0.8rem;
+    line-height: 1rem;
     color: #8b8b8b;
 
     margin: 0;
     margin-top: 8px;
-
-    &:last-child {
-      margin-bottom: 5px;
-    }
   }
 
   &__button {
