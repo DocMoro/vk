@@ -3,7 +3,7 @@ import { JSX } from 'react'
 
 import { ChevronLeftFilled, ChevronRightFilled, SkipNextFilled, SkipPreviousFilled } from '../../shared/assets/icons'
 import { usePagination } from './lib/use-pagination'
-import s from './Pagination.module.scss'
+import s from './pagination.module.scss'
 
 export type PaginationProps = {
   currentPage: number
