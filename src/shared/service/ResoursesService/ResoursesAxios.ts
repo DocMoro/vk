@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-import { apiPath, TOKEN_API } from '../../constants/var'
+import { apiPath } from '../../constants/var'
 
 const api = axios.create({
   baseURL: apiPath.base,
   headers: {
-    'X-API-KEY': TOKEN_API
+    'X-API-KEY': import.meta.env.VITE_TOKEN_API
   }
 })
 

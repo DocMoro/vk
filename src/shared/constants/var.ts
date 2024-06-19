@@ -13,7 +13,6 @@ export enum KEY_QUERY {
   RATING = 'rating.kp',
   YEAR = 'year'
 }
-export const TOKEN_API = '0CSKXBW-1W1M09Z-GAPJRHQ-ZXHJD88'
 export const LIMIT = 50
 export const PAGINATION_STEP = 5
 export const KEY_LOCALDB_FAVORITES = 'favorites'

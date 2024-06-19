@@ -8,10 +8,12 @@ import { FavoritesContext } from '../../store/favoritesSlice'
 const FavoritesPage: FC = () => {
   const favorites = useContext(FavoritesContext)
   const [movies, setMovies] = useState<IMovieWithFavoriteState[]>([])
+  const [isLoading, setIsLoading] = useState(true)
 
   const setDataMovies = useCallback(async () => {
     const queryIDs = favorites.getFavoritesIDs().join('&id=')
     const { data, errorMessage, hasError } = await ResourcesService.getMoviesByIDs(queryIDs)
+    setIsLoading(false)
     if (hasError) {
       console.log(errorMessage)
       return
@@ -38,7 +40,12 @@ const FavoritesPage: FC = () => {
     setDataMovies()
   }, [setDataMovies])
 
-  return <MoviesList movies={movies} />
+  return (
+    <>
+      <MoviesList movies={movies} />
+      {isLoading && <li>...Loading</li>}
+    </>
+  )
 }
 
 export default FavoritesPage

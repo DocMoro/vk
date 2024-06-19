@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { FC, useCallback, useContext, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
@@ -16,6 +17,7 @@ const MoviesPage: FC = () => {
   const favorites = useContext(FavoritesContext)
   const [movies, setMovies] = useState<IMovieWithFavoriteState[]>([])
   const [paginationInfo, setPaginationInfo] = useState<IResInfo>(baseInfo)
+  const [isLoading, setIsLoading] = useState(true)
 
   const { handleGenderClick, handleSubmit } = useResourceFiltering(searchParams, setSearchParams)
 
@@ -28,9 +30,11 @@ const MoviesPage: FC = () => {
   )
 
   const setDataMovies = useCallback(async () => {
+    setIsLoading(true)
     const { data, errorMessage, hasError } = await ResourcesService.getMoviesPage(
       `?${searchParams.toString()}${notNullFields}`
     )
+    setIsLoading(false)
     if (hasError) {
       console.log(errorMessage)
       return
@@ -69,6 +73,7 @@ const MoviesPage: FC = () => {
         />
         <MoviesList movies={movies} className={s.List} />
       </div>
+      <p className={clsx(s.IsLoading, isLoading && s.IsLoadingVisible)}>...Loading</p>
       <Pagination
         pageSize={paginationInfo.limit}
         currentPage={paginationInfo.page}

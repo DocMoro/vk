@@ -6,3 +6,12 @@
   padding-top: 35px;
   border-top: 1px solid #424242;
 }
+
+.IsLoading {
+  text-align: center;
+  visibility: hidden;
+}
+
+.IsLoadingVisible {
+  visibility: visible;
+}
