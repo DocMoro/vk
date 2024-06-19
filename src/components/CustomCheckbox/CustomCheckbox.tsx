@@ -8,9 +8,10 @@ type CustomCheckboxProps = {
   searchParams: URLSearchParams
   name: string
   keyQuery: string
+  className?: string
 }
 
-const CustomCheckbox: FC<CustomCheckboxProps> = ({ name, searchParams, keyQuery, cbClick }) => {
+const CustomCheckbox: FC<CustomCheckboxProps> = ({ name, searchParams, keyQuery, cbClick, className }) => {
   const [state, setState] = useState(searchParams.has(keyQuery, name))
 
   const handleClick = () => {
@@ -22,9 +23,9 @@ const CustomCheckbox: FC<CustomCheckboxProps> = ({ name, searchParams, keyQuery,
   }, [state])
 
   return (
-    <label className={clsx(s.label, s.CustomCheckIcon)}>
-      <input type="checkbox" checked={state} name={name} onChange={handleClick} />
-      {name}
+    <label className={clsx(s.label, s.CustomCheckIcon, state && s.CustomCheckIconVisible, className && className)}>
+      <input type="checkbox" name={name} onChange={handleClick} />
+      <span className={s.Text}>{name}</span>
     </label>
   )
 }

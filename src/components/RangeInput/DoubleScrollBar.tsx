@@ -1,7 +1,7 @@
-import './DoubleScrollBar.css'
-
 import clsx from 'clsx'
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
+
+import s from './DoubleScrollBar.module.css'
 
 type DoubleScrollBarProps = {
   min: number
@@ -11,11 +11,13 @@ type DoubleScrollBarProps = {
   step: number
   query: URLSearchParams
   keyQuery: string
+  len: number
 }
 
-const DoubleScrollBar: FC<DoubleScrollBarProps> = ({ min, max, name, className, step, query, keyQuery }) => {
-  const [inputFrom, setInputFrom] = useState(min)
-  const [inputTo, setInputTo] = useState(max)
+const DoubleScrollBar: FC<DoubleScrollBarProps> = ({ min, max, name, className, step, query, keyQuery, len }) => {
+  const startValue = query.get(keyQuery)?.split('-')
+  const [inputFrom, setInputFrom] = useState(startValue ? parseFloat(startValue[0]) : min)
+  const [inputTo, setInputTo] = useState(startValue ? parseFloat(startValue[1]) : max)
 
   useEffect(() => {
     const slider = document.getElementById(`slider-${name}`)
@@ -33,12 +35,20 @@ const DoubleScrollBar: FC<DoubleScrollBarProps> = ({ min, max, name, className, 
     }
   }, [inputFrom, inputTo])
 
+  const pos = useMemo(
+    () =>
+      Array(len)
+        .fill(min)
+        .map((value, index) => value + Math.ceil(index * ((max - min) / 10))),
+    [min, len, max]
+  )
+
   return (
     <div className={clsx(className && className)}>
-      <div className="range-slider">
-        <span className="range-selected" id={`slider-${name}`}></span>
+      <div className={s.Slider}>
+        <span className={s.Selected} id={`slider-${name}`}></span>
       </div>
-      <div className="range-input">
+      <div className={s.RangeInput}>
         <input
           type="range"
           value={inputFrom}
@@ -50,6 +60,7 @@ const DoubleScrollBar: FC<DoubleScrollBarProps> = ({ min, max, name, className, 
         />
         <input
           type="range"
+          value={inputTo}
           onChange={e => setInputTo(parseFloat(e.target.value))}
           min={min}
           max={max}
@@ -57,6 +68,11 @@ const DoubleScrollBar: FC<DoubleScrollBarProps> = ({ min, max, name, className, 
           defaultValue={max}
         />
       </div>
+      <ul className={s.Range}>
+        {pos.map(value => (
+          <li key={value}>{value}</li>
+        ))}
+      </ul>
     </div>
   )
 }
