@@ -65,7 +65,7 @@ const MoviesPage: FC = () => {
   }, [setDataMovies])
 
   return (
-    <>
+    <main>
       <div className={s.MoviesContainer}>
         <FormOfFiltration
           className={s.FormPosition}
@@ -83,7 +83,7 @@ const MoviesPage: FC = () => {
         totalCount={paginationInfo.total}
         onPageChange={setAnotherPage}
       />
-    </>
+    </main>
   )
 }
 

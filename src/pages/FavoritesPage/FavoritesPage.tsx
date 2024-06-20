@@ -41,10 +41,10 @@ const FavoritesPage: FC = () => {
   }, [setDataMovies])
 
   return (
-    <>
+    <main>
       <MoviesList movies={movies} />
       {isLoading && <li>...Loading</li>}
-    </>
+    </main>
   )
 }
 

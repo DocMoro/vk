@@ -31,7 +31,11 @@ const MoviePage: FC = () => {
     return <div></div>
   }
 
-  return <MovieProfile movie={movie} />
+  return (
+    <main>
+      <MovieProfile movie={movie} />
+    </main>
+  )
 }
 
 export default MoviePage
