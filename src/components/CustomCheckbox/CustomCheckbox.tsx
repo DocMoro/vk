@@ -15,12 +15,14 @@ const CustomCheckbox: FC<CustomCheckboxProps> = ({ name, searchParams, keyQuery,
   const [state, setState] = useState(searchParams.has(keyQuery, name))
 
   const handleClick = () => {
-    setState(!state)
+    const newState = !state
+    cbClick(name, newState)
+    setState(newState)
   }
 
   useEffect(() => {
-    cbClick(name, state)
-  }, [state])
+    setState(searchParams.has(keyQuery, name))
+  }, [searchParams, keyQuery, name])
 
   return (
     <label className={clsx(s.label, s.CustomCheckIcon, state && s.CustomCheckIconVisible, className && className)}>

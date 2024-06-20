@@ -26,6 +26,7 @@ export const useResourceFiltering = (
     (e: FormEvent) => {
       e.preventDefault()
 
+      query.set('page', '1')
       setQuery(query, { replace: true })
     },
     [query]
