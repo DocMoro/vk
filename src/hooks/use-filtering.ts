@@ -11,7 +11,7 @@ export const useResourceFiltering = (
   query: URLSearchParams,
   setQuery: (newQuery: URLSearchParams, options: NavigateOptions) => void
 ) => {
-  const handleGenderClick = useCallback(
+  const handleGendersChange = useCallback(
     (name: string, checked: boolean) => {
       if (checked) {
         query.append(KEY_QUERY.GENRES, name)
@@ -33,7 +33,7 @@ export const useResourceFiltering = (
   )
 
   return {
-    handleGenderClick,
+    handleGendersChange,
     handleSubmit
   }
 }

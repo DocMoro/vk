@@ -1,6 +1,7 @@
 .MoviesContainer {
   display: flex;
   align-items: start;
+  flex-grow: 3;
   gap: 30px;
 
   padding-top: 35px;

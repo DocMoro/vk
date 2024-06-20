@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import { FC, useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -7,7 +6,7 @@ import { IMovieWithFavoriteState } from '../../shared/constants/type'
 import { path } from '../../shared/constants/var'
 import { checkDataValidity } from '../../shared/utils/pureFunc'
 import { FavoritesContext } from '../../store/favoritesSlice'
-import s from './MovieCard.module.scss'
+import s from './MovieCard.module.css'
 
 type MovieCardProps = {
   movie: IMovieWithFavoriteState
@@ -35,24 +34,24 @@ export const MovieCard: FC<MovieCardProps> = ({ movie }) => {
   const renderRating = checkDataValidity(rating.kp)
 
   return (
-    <li className={s.card}>
-      <Link className={s.card__link} to={`${path.movie}/${id}`}>
-        <img alt={renderName} className={s.card__image} src={renderPoster} />
+    <li className={s.Card}>
+      <Link className={s.Link} to={`${path.movie}/${id}`}>
+        <img alt={renderName} className={s.Image} src={renderPoster} />
       </Link>
       <div>
-        <h3 className={s.card__title}>{renderName}</h3>
-        <p className={s.card__text}>{renderYear}</p>
-        <p className={s.card__text}>{renderRating}</p>
+        <h3 className={s.Title}>{renderName}</h3>
+        <p className={s.Text}>{renderYear}</p>
+        <p className={s.Text}>{renderRating}</p>
         <button
-          className={clsx(s.card__button, s.button)}
+          className={s.Button}
           onClick={handleButtonClick}
           title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
           type={'button'}
         >
           {isFavorite ? (
-            <Star fill={'#1a73e8'} className={s.card__icon} />
+            <Star fill={'#1a73e8'} className={s.Icon} />
           ) : (
-            <StarOutline fill={'#1a73e8'} className={s.card__icon} />
+            <StarOutline fill={'#1a73e8'} className={s.Icon} />
           )}
         </button>
       </div>

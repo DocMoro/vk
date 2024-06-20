@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import MovieProfile from '../../components/MovieProfile/MovieProfile'
+import { MovieProfile } from '../../components/MovieProfile/MovieProfile'
 import { IMovie } from '../../shared/constants/type'
 import ResourcesService from '../../shared/service/ResoursesService/ResoursesService'
 
@@ -31,7 +31,11 @@ const MoviePage: FC = () => {
     return <div></div>
   }
 
-  return <MovieProfile movie={movie} />
+  return (
+    <main>
+      <MovieProfile movie={movie} />
+    </main>
+  )
 }
 
 export default MoviePage
