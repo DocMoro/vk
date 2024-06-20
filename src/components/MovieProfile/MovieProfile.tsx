@@ -10,7 +10,7 @@ type MovieProfile = {
   className?: string
 }
 
-const MovieProfile: FC<MovieProfile> = ({ movie, className }) => {
+export const MovieProfile: FC<MovieProfile> = ({ movie, className }) => {
   const renderName = checkDataValidity(movie.name)
   const renderImg = checkDataValidity(movie.poster?.url)
 
@@ -56,5 +56,3 @@ const MovieProfile: FC<MovieProfile> = ({ movie, className }) => {
     </section>
   )
 }
-
-export default MovieProfile

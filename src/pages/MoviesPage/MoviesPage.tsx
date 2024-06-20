@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import { FC, useCallback, useContext, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import FormOfFiltration from '../../components/FormOfFiltration/FormOfFiltration'
+import { FormOfFiltration } from '../../components/FormOfFiltration/FormOfFiltration'
 import { MoviesList } from '../../components/MoviesList/MoviesList'
 import { Pagination } from '../../components/Pagination'
 import { useResourceFiltering } from '../../hooks/use-filtering'
@@ -21,7 +21,7 @@ const MoviesPage: FC = () => {
   const [paginationInfo, setPaginationInfo] = useState<IResInfo>(baseInfo)
   const [isLoading, setIsLoading] = useState(true)
 
-  const { handleGenderClick, handleSubmit } = useResourceFiltering(searchParams, setSearchParams)
+  const { handleGendersChange, handleSubmit } = useResourceFiltering(searchParams, setSearchParams)
 
   const setAnotherPage = useCallback(
     (nextPage: number) => {
@@ -70,7 +70,7 @@ const MoviesPage: FC = () => {
         <FormOfFiltration
           className={s.FormPosition}
           searchParams={searchParams}
-          cbChangeGenres={handleGenderClick}
+          cbChangeGenres={handleGendersChange}
           cbSubmit={handleSubmit}
         />
         <MoviesList movies={movies} className={s.List} />

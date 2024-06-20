@@ -15,7 +15,7 @@ type FormOfFiltrationProps = {
 
 const currYear = new Date().getFullYear()
 
-const FormOfFiltration: FC<FormOfFiltrationProps> = ({ searchParams, cbChangeGenres, cbSubmit, className }) => {
+export const FormOfFiltration: FC<FormOfFiltrationProps> = ({ searchParams, cbChangeGenres, cbSubmit, className }) => {
   return (
     <form className={clsx(s.Form, className && className)} onSubmit={cbSubmit}>
       <ul className={s.List}>
@@ -54,5 +54,3 @@ const FormOfFiltration: FC<FormOfFiltrationProps> = ({ searchParams, cbChangeGen
     </form>
   )
 }
-
-export default FormOfFiltration

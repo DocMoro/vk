@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import MovieProfile from '../../components/MovieProfile/MovieProfile'
+import { MovieProfile } from '../../components/MovieProfile/MovieProfile'
 import { IMovie } from '../../shared/constants/type'
 import ResourcesService from '../../shared/service/ResoursesService/ResoursesService'
 

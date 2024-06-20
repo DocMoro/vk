@@ -35,7 +35,7 @@ const DoubleScrollBar: FC<DoubleScrollBarProps> = ({ min, max, name, className, 
     }
   }, [inputFrom, inputTo])
 
-  const pos = useMemo(
+  const ruler = useMemo(
     () =>
       Array(len)
         .fill(min)
@@ -67,7 +67,7 @@ const DoubleScrollBar: FC<DoubleScrollBarProps> = ({ min, max, name, className, 
         />
       </div>
       <ul className={s.Range}>
-        {pos.map(value => (
+        {ruler.map(value => (
           <li key={value}>{value}</li>
         ))}
       </ul>
