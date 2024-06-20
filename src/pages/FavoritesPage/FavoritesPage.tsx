@@ -1,6 +1,6 @@
 import { FC, useCallback, useContext, useEffect, useState } from 'react'
 
-import { MoviesList } from '../../components/MoviesList'
+import { MoviesList } from '../../components/MoviesList/MoviesList'
 import { IMovieWithFavoriteState } from '../../shared/constants/type'
 import ResourcesService from '../../shared/service/ResoursesService/ResoursesService'
 import { FavoritesContext } from '../../store/favoritesSlice'

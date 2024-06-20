@@ -3,7 +3,7 @@ import { FC, useCallback, useContext, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import FormOfFiltration from '../../components/FormOfFiltration/FormOfFiltration'
-import { MoviesList } from '../../components/MoviesList'
+import { MoviesList } from '../../components/MoviesList/MoviesList'
 import { Pagination } from '../../components/Pagination'
 import { useResourceFiltering } from '../../hooks/use-filtering'
 import { useQuery } from '../../hooks/use-query'

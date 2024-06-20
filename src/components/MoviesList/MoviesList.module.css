@@ -1,4 +1,4 @@
-.character__list {
+.List {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   align-items: start;
@@ -8,13 +8,13 @@
 }
 
 @media screen and (max-width: 1090px) {
-  .character__list {
+  .List {
     gap: 30px;
   }
 }
 
 @media screen and (max-width: 520px) {
-  .character__list {
+  .List {
     gap: 34px;
   }
 }
