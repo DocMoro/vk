@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { FC, useEffect, useMemo, useState } from 'react'
+import { FC, useEffect, useMemo, useRef, useState } from 'react'
 
 import s from './DoubleScrollBar.module.css'
 
@@ -18,20 +18,20 @@ const DoubleScrollBar: FC<DoubleScrollBarProps> = ({ min, max, name, className, 
   const startValue = query.get(keyQuery)?.split('-')
   const [inputFrom, setInputFrom] = useState(startValue ? parseFloat(startValue[0]) : min)
   const [inputTo, setInputTo] = useState(startValue ? parseFloat(startValue[1]) : max)
+  const refCustomInput = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
-    const slider = document.getElementById(`slider-${name}`)
-    if (!slider) {
+    if (!refCustomInput.current) {
       return
     }
     if (inputFrom > inputTo) {
       query.set(keyQuery, `${inputTo}-${inputFrom}`)
-      slider.style.right = `${100 - ((inputFrom - min) / (max - min)) * 100}%`
-      slider.style.left = `${((inputTo - min) / (max - min)) * 100}%`
+      refCustomInput.current.style.right = `${100 - ((inputFrom - min) / (max - min)) * 100}%`
+      refCustomInput.current.style.left = `${((inputTo - min) / (max - min)) * 100}%`
     } else {
       query.set(keyQuery, `${inputFrom}-${inputTo}`)
-      slider.style.right = `${100 - ((inputTo - min) / (max - min)) * 100}%`
-      slider.style.left = `${((inputFrom - min) / (max - min)) * 100}%`
+      refCustomInput.current.style.right = `${100 - ((inputTo - min) / (max - min)) * 100}%`
+      refCustomInput.current.style.left = `${((inputFrom - min) / (max - min)) * 100}%`
     }
   }, [inputFrom, inputTo])
 
@@ -46,7 +46,7 @@ const DoubleScrollBar: FC<DoubleScrollBarProps> = ({ min, max, name, className, 
   return (
     <div className={clsx(className && className)}>
       <div className={s.Slider}>
-        <span className={s.Selected} id={`slider-${name}`}></span>
+        <span ref={refCustomInput} className={s.Selected} id={`slider-${name}`}></span>
       </div>
       <div className={s.RangeInput}>
         <input
