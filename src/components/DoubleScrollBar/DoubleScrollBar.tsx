@@ -6,7 +6,6 @@ import s from './DoubleScrollBar.module.css'
 type DoubleScrollBarProps = {
   min: number
   max: number
-  name: string
   className?: string
   step: number
   query: URLSearchParams
@@ -14,7 +13,7 @@ type DoubleScrollBarProps = {
   len: number
 }
 
-const DoubleScrollBar: FC<DoubleScrollBarProps> = ({ min, max, name, className, step, query, keyQuery, len }) => {
+const DoubleScrollBar: FC<DoubleScrollBarProps> = ({ min, max, className, step, query, keyQuery, len }) => {
   const startValue = query.get(keyQuery)?.split('-')
   const [inputFrom, setInputFrom] = useState(startValue ? parseFloat(startValue[0]) : min)
   const [inputTo, setInputTo] = useState(startValue ? parseFloat(startValue[1]) : max)
@@ -46,7 +45,7 @@ const DoubleScrollBar: FC<DoubleScrollBarProps> = ({ min, max, name, className, 
   return (
     <div className={clsx(className && className)}>
       <div className={s.Slider}>
-        <span ref={refCustomInput} className={s.Selected} id={`slider-${name}`}></span>
+        <span ref={refCustomInput} className={s.Selected}></span>
       </div>
       <div className={s.RangeInput}>
         <input
