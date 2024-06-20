@@ -30,24 +30,8 @@ export const FormOfFiltration: FC<FormOfFiltrationProps> = ({ searchParams, cbCh
           </li>
         ))}
       </ul>
-      <RangeInput
-        name="ratings"
-        query={searchParams}
-        keyQuery={KEY_QUERY.RATING}
-        min={1}
-        max={10}
-        step={0.1}
-        len={10}
-      />
-      <RangeInput
-        name="years"
-        query={searchParams}
-        keyQuery={KEY_QUERY.YEAR}
-        min={1990}
-        max={currYear}
-        step={1}
-        len={11}
-      />
+      <RangeInput query={searchParams} keyQuery={KEY_QUERY.RATING} min={1} max={10} step={0.1} len={10} />
+      <RangeInput query={searchParams} keyQuery={KEY_QUERY.YEAR} min={1990} max={currYear} step={1} len={11} />
       <button className={s.Button} type="submit">
         Поиск
       </button>
