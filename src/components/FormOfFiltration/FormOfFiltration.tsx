@@ -3,7 +3,7 @@ import { FC, FormEvent } from 'react'
 
 import { GENRES, KEY_QUERY } from '../../shared/constants/var'
 import CustomCheckbox from '../CustomCheckbox/CustomCheckbox'
-import RangeInput from '../RangeInput/DoubleScrollBar'
+import RangeInput from '../DoubleScrollBar/DoubleScrollBar'
 import s from './FormOfFiltration.module.css'
 
 type FormOfFiltrationProps = {
